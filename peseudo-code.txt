@@ -1,0 +1,33 @@
+Initialize two stacks: backStack and forwardStack
+
+Function visitSite(site):
+    backStack.push(site)     // Visit a new site, push it to backStack
+    forwardStack.clear()     // Clear forwardStack since visiting a new site clears forward history
+
+Function navigateBack():
+    if backStack.isEmpty():
+        print("No previous pages to navigate back to")
+        return
+    currentSite = backStack.pop()      // Pop the current site from backStack
+    forwardStack.push(currentSite)     // Push it to forwardStack
+    navigateTo(currentSite)            // Navigate to the previous site
+
+Function navigateForward():
+    if forwardStack.isEmpty():
+        print("No forward pages to navigate to")
+        return
+    currentSite = forwardStack.pop()   // Pop the current site from forwardStack
+    backStack.push(currentSite)       // Push it back to backStack
+    navigateTo(currentSite)           // Navigate to the forward site
+
+Function navigateTo(site):
+    // Navigate to the given site
+    print("Navigating to", site)
+
+// Example usage:
+visitSite("Google")
+visitSite("Yahoo")
+visitSite("EBay")
+navigateBack()       // Navigating back to Yahoo
+navigateForward()    // Navigating forward to EBay again
+visitSite("Apple")
